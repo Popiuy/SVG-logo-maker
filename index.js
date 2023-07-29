@@ -1,10 +1,9 @@
 const jest = require("jest");
 const fs = require('fs');
 const inquirer = require('inquirer');
-const { createSVGElement } = require('./lib/shapes.js');
+const { createSVGE } = require('./lib/shapes.js');
 
-// Regular expression to validate color inputs (hexadecimal or color keywords)
-const colorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^[a-zA-Z]+$/;
+const color = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^[a-zA-Z]+$/;
 
 inquirer.prompt([
   {
@@ -17,7 +16,7 @@ inquirer.prompt([
     name: 'textColor',
     message: 'Enter the text color (color keyword or hexadecimal number):',
     validate: function (input) {
-      if (colorRegex.test(input)) {
+      if (color.test(input)) {
         return true;
       }
       return 'Please enter a valid color keyword or hexadecimal number.';
@@ -34,7 +33,7 @@ inquirer.prompt([
     name: 'shapeColor',
     message: 'Enter the shape color (color keyword or hexadecimal number):',
     validate: function (input) {
-      if (colorRegex.test(input)) {
+      if (color.test(input)) {
         return true;
       }
       return 'Please enter a valid color keyword or hexadecimal number.';
@@ -47,7 +46,7 @@ inquirer.prompt([
   let textX, textY;
   
   if (shape === 'circle') {
-    svgShape = createSVGElement("circle", {
+    svgShape = createSVGE("circle", {
       cx: "150",
       cy: "100",
       r: "40", 
@@ -56,7 +55,7 @@ inquirer.prompt([
     textX = 150;
     textY = 100;
   } else if (shape === 'square') {
-    svgShape = createSVGElement("rect", {
+    svgShape = createSVGE("rect", {
       x: "120", 
       y: "70", 
       rx: "10",
@@ -68,7 +67,7 @@ inquirer.prompt([
     textX = 150;
     textY = 100;
   } else if (shape === 'triangle') {
-    svgShape = createSVGElement("polygon", {
+    svgShape = createSVGE("polygon", {
       points: "120,60 90,100 150,100", 
       fill: shapeColor,
     });
@@ -78,9 +77,6 @@ inquirer.prompt([
     console.error('Invalid shape choice.');
     return;
   }
-
-  // Removed the Triangle class definition from here
-
   const svgContent = `<svg version="1.1"
   width="300" height="200"
   xmlns="http://www.w3.org/2000/svg">
