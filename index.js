@@ -44,38 +44,49 @@ inquirer.prompt([
 .then((answers) => {
   const { text, textColor, shape, shapeColor } = answers;
   let svgShape;
-
+  let textX, textY;
+  
   if (shape === 'circle') {
     svgShape = createSVGElement("circle", {
-      cx: "25",
-      cy: "75",
-      r: "20",
+      cx: "150",
+      cy: "100",
+      r: "40", 
       fill: shapeColor,
     });
+    textX = 150;
+    textY = 100;
   } else if (shape === 'square') {
     svgShape = createSVGElement("rect", {
-      x: "60",
-      y: "10",
+      x: "120", 
+      y: "70", 
       rx: "10",
       ry: "10",
-      width: "30",
-      height: "30",
+      width: "60", 
+      height: "60", 
       fill: shapeColor,
     });
+    textX = 150;
+    textY = 100;
   } else if (shape === 'triangle') {
     svgShape = createSVGElement("polygon", {
-      points: "100,10 80,40 120,40",
+      points: "120,60 90,100 150,100", 
       fill: shapeColor,
     });
+    textX = 150;
+    textY = 100;
   } else {
     console.error('Invalid shape choice.');
     return;
   }
 
-  const svgContent = `
-    <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  // Removed the Triangle class definition from here
+
+  const svgContent = `<svg version="1.1"
+  width="300" height="200"
+  xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="red" />
       ${svgShape}
-      <text x="50%" y="50%" text-anchor="middle" fill="${textColor}" font-size="48">${text}</text>
+      <text x="${textX}" y="${textY}" font-size="30" text-anchor="middle" fill="${textColor}">${text}</text>
     </svg>
   `;
 
