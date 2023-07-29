@@ -4,8 +4,7 @@
 Using node.js along with jest(for testing our code) inquirer(to enable us to prompt the user in the terminal) and fs (to let us writeFile and make our logo). This app is designed to make a svg logo for the user so they do not have to pay a graphic designer.
 
 ## Video
-[https://drive.google.com/file/d/1snytgWrCYcDtgXz3xTsUPITs9jrawnfD/view](
-[https://drive.google.com/file/d/1snytgWrCYcDtgXz3xTsUPITs9jrawnfD/view])
+[watch the video!](https://drive.google.com/file/d/1snytgWrCYcDtgXz3xTsUPITs9jrawnfD/view)
 
 ## Table of Contents
 - [Installation](#installation)
